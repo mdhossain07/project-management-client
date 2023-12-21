@@ -8,7 +8,7 @@ import moment from "moment";
 const Card = ({ task, tasks, setTasks }) => {
   const { title, priority, _id, image, deadline } = task;
 
-  const myDate = moment(deadline).format("MMMM Do YYYY");
+  const myDate = moment(deadline).format("MMMM D, YYYY");
 
   const axiosPublic = useAxiosPublic();
 
@@ -31,22 +31,22 @@ const Card = ({ task, tasks, setTasks }) => {
   };
 
   return (
-    <div className="border mt-10 border-red-500 h-[300px] w-[300px] shadow-md ">
+    <div className="mt-2 py-3 h-[330px] w-[300px] shadow-md rounded-md">
       <div
         ref={drag}
         className={` ${isDragging ? "opacity-25" : "opacity-100"}`}
       >
-        <button
-          onClick={() => handleRemove(_id)}
-          className="absolute right-1 bottom-5 p-3 "
-        >
-          <FaTrash className="text-red-500" />
-        </button>
-        <img src={image} className="h-[200px] w-full" alt="" />
-        <h2 className="font-medium">{title}</h2>
-        <div className="flex gap-16">
+        <img src={image} className="h-[200px] w-full p-3" alt="" />
+        <div className="flex gap-10">
+          <h2 className="font-medium ml-2 w-[210px]">{title}</h2>
+          <button onClick={() => handleRemove(_id)}>
+            <FaTrash className="text-red-500" />
+          </button>
+        </div>
+
+        <div className="flex gap-10 mt-3">
           <p
-            className={`rounded-md px-2 capitalize  ${
+            className={`rounded-md px-2 capitalize ml-2  ${
               priority === "moderate" && "bg-yellow-400"
             } || 
             ${priority === "high" && "bg-red-500 text-white"}

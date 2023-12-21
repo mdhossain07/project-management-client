@@ -1,6 +1,7 @@
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
 import TaskStack from "../../Components/TaskStack/TaskStack";
+import useAuth from "../../hooks/useAuth";
 
 const AllTasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -8,6 +9,13 @@ const AllTasks = () => {
   const [doing, setDoing] = useState([]);
   const [completed, setCompleted] = useState([]);
   const axiosPublic = useAxiosPublic();
+  const { user, loading } = useAuth();
+
+  useEffect(() => {
+    axiosPublic.get(`/api/v1/task/${user?.email}`).then((res) => {
+      setTasks(res.data);
+    });
+  }, [axiosPublic, user?.email]);
 
   useEffect(() => {
     const getTodos = tasks?.filter((task) => task?.status === "todo");
@@ -17,32 +25,31 @@ const AllTasks = () => {
     setTodos(getTodos);
     setDoing(getDoing);
     setCompleted(getcompleted);
-  }, [tasks]);
-
-  useEffect(() => {
-    axiosPublic.get("/api/v1/tasks").then((res) => {
-      setTasks(res.data);
-    });
-  }, [axiosPublic]);
+  }, [tasks, user]);
 
   const statuses = ["todo", "doing", "completed"];
 
   return (
     <div>
       <h2 className="text-center text-3xl font-semibold">All Tasks</h2>
-
-      <div className="flex gap-5 lg:gap-16 overflow-x-auto">
-        {statuses?.map((status, index) => (
-          <TaskStack
-            key={index}
-            status={status}
-            tasks={tasks}
-            setTasks={setTasks}
-            todos={todos}
-            doing={doing}
-            completed={completed}
-          ></TaskStack>
-        ))}
+      <div>
+        {loading ? (
+          <span className="loading loading-infinity loading-lg"></span>
+        ) : (
+          <div className="flex gap-5 lg:gap-16 overflow-x-auto">
+            {statuses?.map((status, index) => (
+              <TaskStack
+                key={index}
+                status={status}
+                tasks={tasks}
+                setTasks={setTasks}
+                todos={todos}
+                doing={doing}
+                completed={completed}
+              ></TaskStack>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

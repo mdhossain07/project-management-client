@@ -2,10 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import googleIcon from "../../assets/icons/Google__G__Logo 1 (1).svg";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -39,8 +41,17 @@ const Register = () => {
     createUser(email, password)
       .then((res) => {
         updateUserProfile(name, photo).then(() => {
-          Swal.fire("Success", "User Created Done", "success");
-          navigate("/");
+          const userInfo = {
+            name: name,
+            email: email,
+            image: photo,
+          };
+          axiosPublic.post("/api/v1/create-user", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              Swal.fire("Success", "User Created Done", "success");
+              navigate("/");
+            }
+          });
           console.log(res.user);
         });
       })

@@ -35,7 +35,6 @@ const TaskStack = ({ status, tasks, setTasks, todos, doing, completed }) => {
         }
         return task;
       });
-      console.log(moveTask);
 
       return moveTask;
     });
@@ -60,7 +59,7 @@ const TaskStack = ({ status, tasks, setTasks, todos, doing, completed }) => {
   return (
     <div
       ref={drop}
-      className={`w-64 rounded-md p-2 ${isOver ? "bg-slate-200" : ""}`}
+      className={`w-[330px] rounded-md p-2 ${isOver ? "bg-slate-200" : ""}`}
     >
       <StackTitle text={text} bg={bg} count={myTasks?.length} />
 
@@ -79,7 +78,7 @@ const TaskStack = ({ status, tasks, setTasks, todos, doing, completed }) => {
 const StackTitle = ({ text, bg, count }) => {
   return (
     <div
-      className={`${bg} flex items-center justify-center h-14  uppercase text-white rounded-md`}
+      className={`${bg} w-[300px] flex gap-10 items-center justify-center h-14 uppercase text-white rounded-md`}
     >
       {text}
       <div className="ml-2 flex items-center justify-center rounded-full w-5 h-5 bg-white text-black">
