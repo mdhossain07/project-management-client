@@ -1,9 +1,13 @@
 import Banner from "../../Components/Banner/Banner";
+import Pricing from "../../Components/Pricing/Pricing";
+import Users from "../../Components/Users/Users";
 
 const Home = () => {
   return (
-    <div className="bg-bg-gradient-to-r from-purple-500 to-pink-500">
+    <div className="">
       <Banner />
+      <Users />
+      <Pricing />
     </div>
   );
 };

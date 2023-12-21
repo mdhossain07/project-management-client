@@ -9,7 +9,7 @@ const Banner = () => {
           <h2 className="text-4xl lg:text-5xl font-bold w-[500px] lg:w-[600px] text-center lg:text-start">
             Team Flow brings all your tasks, teammates, and tools together
           </h2>
-          <p className="text-center lg:text-start">
+          <p className="text-center lg:text-start text-lg">
             Keep everything in the same place—even if your team isn’t.
           </p>
           <Link to="/login">
