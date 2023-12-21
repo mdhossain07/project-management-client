@@ -57,7 +57,7 @@ const Navbar = () => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <div className="max-w-screen-2xl mx-auto px-8 md:px-16 lg:px-24 w-full navbar bg-base-300">
+          <div className="max-w-screen-2xl mx-auto px-8 md:px-16 lg:px-24 w-full navbar bg-white shadow-md">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -79,7 +79,9 @@ const Navbar = () => {
                 </svg>
               </label>
             </div>
-            <div className="flex-1 px-2 mx-2">Logo</div>
+            <Link to="/" className="flex-1 px-2 mx-2">
+              Team Flow
+            </Link>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">
                 {/* Navbar menu content here */}

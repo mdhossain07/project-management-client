@@ -3,9 +3,11 @@ import Swal from "sweetalert2";
 
 import googleIcon from "../../assets/icons/Google__G__Logo 1 (1).svg";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Login = () => {
-  const { loginUser, googleLogin } = useAuth();
+  const { loginUser, googleLogin, user } = useAuth();
+  const axiosPublic = useAxiosPublic();
 
   const navigate = useNavigate();
 
@@ -30,8 +32,19 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleLogin()
       .then((res) => {
-        Swal.fire("Success!", "Logged in successfully!", "success");
-        navigate("/");
+        const userInfo = {
+          name: user?.displayName,
+          email: user?.email,
+          image: user?.photoURL,
+        };
+
+        axiosPublic.post("/api/v1/create-user", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            Swal.fire("Success", "User Created Done", "success");
+            navigate("/");
+          }
+        });
+
         console.log(res.user);
       })
       .catch((err) => {
