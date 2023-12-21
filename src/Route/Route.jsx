@@ -6,8 +6,8 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Profile from "../Pages/Profile/Profile";
-import Tasks from "../Pages/Profile/Tasks/Tasks";
 import AllTasks from "../Pages/AllTasks/AllTasks";
+import CreateTasks from "../Pages/CreateTasks/CreateTasks";
 
 const routes = createBrowserRouter([
   {
@@ -38,8 +38,8 @@ const routes = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "tasks",
-        element: <Tasks />,
+        path: "create-tasks",
+        element: <CreateTasks />,
       },
       {
         path: "all-tasks",

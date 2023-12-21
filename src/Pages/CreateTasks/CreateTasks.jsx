@@ -1,12 +1,33 @@
 import { useForm } from "react-hook-form";
-import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
-const Tasks = () => {
+const CreateTasks = () => {
+  const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    const newTask = {
+      title: data.title,
+      priority: data.priority,
+      deadline: data.deadline,
+      description: data.description,
+      status: "todo",
+      createdBy: user?.email,
+    };
+    console.log(newTask);
+
+    axiosPublic.post("/api/v1/add-task", newTask).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire("Done", "New Task has been created", "success");
+        reset();
+        navigate("/dashboard/all-tasks");
+      }
+    });
   };
   return (
     <div>
@@ -32,9 +53,9 @@ const Tasks = () => {
               required
               {...register("priority")}
             >
-              <option value="phone">Low</option>
-              <option value="laptop">Moderate</option>
-              <option value="smartwatch">High</option>
+              <option value="low">Low</option>
+              <option value="moderate">Moderate</option>
+              <option value="high">High</option>
             </select>
           </div>
         </div>
@@ -64,4 +85,4 @@ const Tasks = () => {
   );
 };
 
-export default Tasks;
+export default CreateTasks;

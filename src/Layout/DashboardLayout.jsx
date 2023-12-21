@@ -6,7 +6,7 @@ const DashboardLayout = () => {
       <div className="flex flex-row  h-screen">
         <div className="w-1/3 bg-red-400 flex flex-col">
           <Link to="/dashboard/profile">Profile</Link>
-          <Link to="/dashboard/tasks">Create Tasks</Link>
+          <Link to="/dashboard/create-tasks">Create Tasks</Link>
           <Link to="/dashboard/all-tasks">All Tasks</Link>
           <Link to="/">Home</Link>
         </div>
