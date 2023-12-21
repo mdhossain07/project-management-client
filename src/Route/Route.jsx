@@ -4,6 +4,10 @@ import Home from "../Pages/Home/Home";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import DashboardLayout from "../Layout/DashboardLayout";
+import Profile from "../Pages/Profile/Profile";
+import Tasks from "../Pages/Profile/Tasks/Tasks";
+import AllTasks from "../Pages/AllTasks/AllTasks";
 
 const routes = createBrowserRouter([
   {
@@ -22,6 +26,24 @@ const routes = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "tasks",
+        element: <Tasks />,
+      },
+      {
+        path: "all-tasks",
+        element: <AllTasks />,
       },
     ],
   },

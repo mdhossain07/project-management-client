@@ -1,6 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
-
+import useAuth from "../../hooks/useAuth";
 const Navbar = () => {
+  const { user } = useAuth();
   const NavItems = (
     <>
       <li>
@@ -9,9 +10,34 @@ const Navbar = () => {
       <li>
         <a>Contact Us</a>
       </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
+      {user ? (
+        <div className="dropdown dropdown-end">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle avatar"
+          >
+            <div className="w-10 rounded-full">
+              <img alt={user?.displayName} src={user?.photoURL} />
+            </div>
+          </div>
+          <ul
+            tabIndex={0}
+            className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+            <li>
+              <a>Logout</a>
+            </li>
+          </ul>
+        </div>
+      ) : (
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      )}
     </>
   );
 
@@ -43,7 +69,7 @@ const Navbar = () => {
                 </svg>
               </label>
             </div>
-            <div className="flex-1 px-2 mx-2">Navbar Title</div>
+            <div className="flex-1 px-2 mx-2">Logo</div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">
                 {/* Navbar menu content here */}

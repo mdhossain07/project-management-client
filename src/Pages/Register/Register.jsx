@@ -1,10 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import googleIcon from "../../assets/icons/Google__G__Logo 1 (1).svg";
 import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
+  const { createUser, updateUserProfile } = useAuth();
   const navigate = useNavigate();
-  const { createUser, upadateUserProfile } = useAuth();
+
   const handleRegister = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -36,17 +38,17 @@ const Register = () => {
 
     createUser(email, password)
       .then((res) => {
-        upadateUserProfile(name, photo).then(() => {
-          Swal.fire("Success!", "User created successfully!", "success");
+        updateUserProfile(name, photo).then(() => {
+          Swal.fire("Success", "User Created Done", "success");
           navigate("/");
           console.log(res.user);
         });
       })
       .catch((err) => {
         Swal.fire("Error!", err.message, "error");
-        console.log(err);
       });
   };
+
   return (
     <div className="hero min-h-screen ">
       <div className="hero-content flex-col">
@@ -121,6 +123,19 @@ const Register = () => {
               </p>
             </div>
           </form>
+          <div>
+            <h2 className="text-center mt-10">
+              ----------------Or----------------
+            </h2>
+            <div className="flex justify-center py-10">
+              <div className="flex justify-center gap-5 border-2  rounded-full w-[400px] py-2">
+                <img src={googleIcon} alt="googleIcon" />
+                {/* <button className="font-medium" onClick={handleGoogleLogin}>
+                  Continue With Google
+                </button> */}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
