@@ -1,4 +1,3 @@
-import { useDrop } from "react-dnd";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
 import TaskStack from "../../Components/TaskStack/TaskStack";
@@ -11,9 +10,9 @@ const AllTasks = () => {
   const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
-    const getTodos = tasks.filter((task) => task?.status === "todo");
-    const getDoing = tasks.filter((task) => task?.status === "doing");
-    const getcompleted = tasks.filter((task) => task?.status === "completed");
+    const getTodos = tasks?.filter((task) => task?.status === "todo");
+    const getDoing = tasks?.filter((task) => task?.status === "doing");
+    const getcompleted = tasks?.filter((task) => task?.status === "completed");
 
     setTodos(getTodos);
     setDoing(getDoing);
@@ -28,26 +27,11 @@ const AllTasks = () => {
 
   const statuses = ["todo", "doing", "completed"];
 
-  //   const [{ isOver }, drop] = useDrop(() => ({
-  //     accept: "tasks",
-  //     drop: (item) => addToStack(item.id),
-  //     collect: (monitor) => ({
-  //       isOver: !!monitor.isOver(),
-  //     }),
-  //   }));
-  //   console.log(isOver);
-
-  //   const addToStack = (id) => {
-  //     setTasks((prev) => {
-  //       console.log("prev", prev);
-  //       return prev;
-  //     });
-  //   };
   return (
-    <>
+    <div>
       <h2 className="text-center text-3xl font-semibold">All Tasks</h2>
 
-      <div className="flex gap-16 ">
+      <div className="flex gap-5 lg:gap-16 overflow-x-auto">
         {statuses?.map((status, index) => (
           <TaskStack
             key={index}
@@ -60,7 +44,7 @@ const AllTasks = () => {
           ></TaskStack>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

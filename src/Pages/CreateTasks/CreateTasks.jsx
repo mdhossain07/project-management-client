@@ -14,6 +14,7 @@ const CreateTasks = () => {
     const newTask = {
       title: data.title,
       priority: data.priority,
+      image: data.image,
       deadline: data.deadline,
       description: data.description,
       status: "todo",
@@ -59,6 +60,13 @@ const CreateTasks = () => {
             </select>
           </div>
         </div>
+        <label htmlFor="">Image URL</label>
+        <br />
+        <input
+          required
+          className="indent-2 w-full py-2 my-2"
+          {...register("image")}
+        />
         <label htmlFor="">Task Description *</label>
         <br />
         <textarea
@@ -74,12 +82,17 @@ const CreateTasks = () => {
         <input
           {...register("deadline")}
           type="date"
-          className="file-input w-full max-w-xs"
+          className="file-input w-full max-w-xs p-3"
           required
         />
         <br />
+        <br />
 
-        <input className="btn btn-warning" type="submit" value="Add Task" />
+        <input
+          className="btn btn-warning w-full"
+          type="submit"
+          value="Add Task"
+        />
       </form>
     </div>
   );
