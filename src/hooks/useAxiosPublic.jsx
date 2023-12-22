@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "https://team-flow-server.vercel.app",
+  baseURL: "http://localhost:5001",
 });
 
 const useAxiosPublic = () => {

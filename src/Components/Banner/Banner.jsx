@@ -3,8 +3,11 @@ import bannerImg from "../../assets/images/Banner Image.png";
 
 const Banner = () => {
   return (
-    <div className="min-h-[calc(100vh-64px)] lg:min-h-[calc(100vh-82px)] bg-gradient-to-r from-purple-500 to-pink-500">
-      <div className="min-h-[calc(100vh-82px)] flex flex-col lg:flex-row px-24 lg:gap-16 items-center">
+    <div
+      id="home"
+      className="container mx-auto px-8 md:px-16 lg:px-24 min-h-[calc(100vh-64px)] lg:min-h-[calc(100vh-82px)] bg-gradient-to-r from-purple-500 to-pink-500"
+    >
+      <div className="min-h-[calc(100vh-82px)] flex flex-col lg:flex-row lg:gap-16 items-center">
         <div className="text-white my-10 space-y-5">
           <h2 className="text-4xl lg:text-5xl font-bold w-[500px] lg:w-[600px] text-center lg:text-start">
             Team Flow brings all your tasks, teammates, and tools together

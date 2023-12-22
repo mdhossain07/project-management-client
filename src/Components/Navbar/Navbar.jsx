@@ -1,10 +1,16 @@
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { Link } from "react-scroll";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import Logo from "../../assets/images/Team Flow Logo.png";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
+
+  const handleSetActive = (to) => {
+    console.log(to);
+  };
 
   const handleLogout = () => {
     logOut().then(() => {
@@ -15,39 +21,94 @@ const Navbar = () => {
   const NavItems = (
     <>
       <li>
-        <a>Blogs</a>
+        <Link
+          activeClass="active"
+          to="home"
+          spy={true}
+          smooth={true}
+          offset={-100}
+          duration={500}
+          onSetActive={handleSetActive}
+          className="cursor-pointer"
+        >
+          Home
+        </Link>
       </li>
       <li>
-        <a>Contact Us</a>
+        <Link
+          activeClass="active"
+          to="action"
+          spy={true}
+          smooth={true}
+          offset={-100}
+          duration={500}
+          onSetActive={handleSetActive}
+          className="cursor-pointer"
+        >
+          Action
+        </Link>
       </li>
-      {user ? (
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img alt={user?.displayName} src={user?.photoURL} />
+
+      <li>
+        <Link
+          activeClass="active"
+          to="pricing"
+          spy={true}
+          smooth={true}
+          offset={-100}
+          duration={500}
+          onSetActive={handleSetActive}
+          className="cursor-pointer"
+        >
+          Pricing
+        </Link>
+      </li>
+
+      <li>
+        <Link
+          activeClass="active"
+          to="contact"
+          spy={true}
+          smooth={true}
+          offset={-100}
+          duration={500}
+          onSetActive={handleSetActive}
+          className="cursor-pointer"
+        >
+          Contact
+        </Link>
+      </li>
+
+      <div className="lg:ml-56">
+        {user ? (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img alt={user?.displayName} src={user?.photoURL} />
+              </div>
             </div>
+            <ul
+              tabIndex={0}
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 ml-24"
+            >
+              <li>
+                <a href="/dashboard">Dashboard</a>
+              </li>
+              <li>
+                <a onClick={handleLogout}>Logout</a>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-            <li>
-              <a onClick={handleLogout}>Logout</a>
-            </li>
-          </ul>
-        </div>
-      ) : (
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-      )}
+        ) : (
+          <li>
+            <a href="/login">Login</a>
+          </li>
+        )}
+      </div>
     </>
   );
 
@@ -79,16 +140,23 @@ const Navbar = () => {
                 </svg>
               </label>
             </div>
-            <Link to="/" className="flex-1 px-2 mx-2">
-              Team Flow
-            </Link>
-            <div className="flex-none hidden lg:block">
-              <ul className="menu menu-horizontal">
-                {/* Navbar menu content here */}
-                {NavItems}
-              </ul>
+
+            <div className="flex justify-around items-center gap-96">
+              <div>
+                <Link to="/">
+                  <img className="w-[100px]" src={Logo} alt="" />
+                </Link>
+              </div>
+
+              <div className="flex-none hidden lg:block mt-3">
+                <ul className="menu menu-horizontal">
+                  {/* Navbar menu content here */}
+                  {NavItems}
+                </ul>
+              </div>
             </div>
           </div>
+
           {/* Page content here */}
           <Outlet />
         </div>

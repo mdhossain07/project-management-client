@@ -31,12 +31,12 @@ const AllTasks = () => {
 
   return (
     <div>
-      <h2 className="text-center text-3xl font-semibold">All Tasks</h2>
+      <h2 className="text-center text-3xl font-semibold my-10">All Tasks</h2>
       <div>
         {loading ? (
           <span className="loading loading-infinity loading-lg"></span>
         ) : (
-          <div className="flex gap-5 lg:gap-16 overflow-x-auto">
+          <div className="flex flex-col lg:flex-row gap-5 lg:gap-16 ml-5 lg:px-24">
             {statuses?.map((status, index) => (
               <TaskStack
                 key={index}

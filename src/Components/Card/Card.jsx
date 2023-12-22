@@ -2,8 +2,11 @@
 import { useDrag } from "react-dnd";
 import { FaTrash } from "react-icons/fa";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { FaStopwatch } from "react-icons/fa";
+import { FaPenAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const Card = ({ task, tasks, setTasks }) => {
   const { title, priority, _id, image, deadline } = task;
@@ -31,30 +34,37 @@ const Card = ({ task, tasks, setTasks }) => {
   };
 
   return (
-    <div className="mt-2 py-3 h-[330px] w-[300px] shadow-md rounded-md">
+    <div className="mt-2 cursor-pointer py-3 h-[330px] w-[300px] shadow-md rounded-md">
       <div
         ref={drag}
         className={` ${isDragging ? "opacity-25" : "opacity-100"}`}
       >
         <img src={image} className="h-[200px] w-full p-3" alt="" />
-        <div className="flex gap-10">
+        <div className="flex gap-8 px-3 items-center">
           <h2 className="font-medium ml-2 w-[210px]">{title}</h2>
           <button onClick={() => handleRemove(_id)}>
-            <FaTrash className="text-red-500" />
+            <FaTrash className="text-red-500 text-xl" />
           </button>
+
+          <Link to={`/dashboard/update-task/${_id}`}>
+            <FaPenAlt className="text-purple-700 text-xl" />
+          </Link>
         </div>
 
-        <div className="flex gap-10 mt-3">
+        <div className="flex items-center gap-10 mt-3 px-2">
           <p
-            className={`rounded-md px-2 capitalize ml-2  ${
+            className={`rounded-md px-2 capitalize ml-2 text-sm  ${
               priority === "moderate" && "bg-yellow-400"
             } || 
             ${priority === "high" && "bg-red-500 text-white"}
-            || ${priority === "low" && "bg-purple-500"}`}
+            || ${priority === "low" && "bg-cyan-500"}`}
           >
             {priority}
           </p>
-          <p>{myDate}</p>
+          <div className="flex gap-3 items-center">
+            <FaStopwatch />
+            <p className="text-sm">{myDate}</p>
+          </div>
         </div>
       </div>
     </div>

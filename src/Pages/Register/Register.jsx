@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
-  const { createUser, updateUserProfile } = useAuth();
+  const { createUser, updateUserProfile, user, googleLogin } = useAuth();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
 
@@ -54,6 +54,29 @@ const Register = () => {
           });
           console.log(res.user);
         });
+      })
+      .catch((err) => {
+        Swal.fire("Error!", err.message, "error");
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((res) => {
+        const userInfo = {
+          name: user?.displayName,
+          email: user?.email,
+          image: user?.photoURL,
+        };
+
+        axiosPublic.post("/api/v1/create-user", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            Swal.fire("Success", "User Created Done", "success");
+            navigate("/");
+          }
+        });
+
+        console.log(res.user);
       })
       .catch((err) => {
         Swal.fire("Error!", err.message, "error");
@@ -141,9 +164,9 @@ const Register = () => {
             <div className="flex justify-center py-10">
               <div className="flex justify-center gap-5 border-2  rounded-full w-[400px] py-2">
                 <img src={googleIcon} alt="googleIcon" />
-                {/* <button className="font-medium" onClick={handleGoogleLogin}>
+                <button className="font-medium" onClick={handleGoogleLogin}>
                   Continue With Google
-                </button> */}
+                </button>
               </div>
             </div>
           </div>

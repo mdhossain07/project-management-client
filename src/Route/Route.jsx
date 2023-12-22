@@ -8,6 +8,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import Profile from "../Pages/Profile/Profile";
 import AllTasks from "../Pages/AllTasks/AllTasks";
 import CreateTasks from "../Pages/CreateTasks/CreateTasks";
+import EditTasks from "../Pages/EditTasks/EditTasks";
 
 const routes = createBrowserRouter([
   {
@@ -19,23 +20,23 @@ const routes = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
   {
     path: "/dashboard",
     element: <DashboardLayout />,
     children: [
       {
-        path: "profile",
         element: <Profile />,
+        index: true,
       },
       {
         path: "create-tasks",
@@ -44,6 +45,10 @@ const routes = createBrowserRouter([
       {
         path: "all-tasks",
         element: <AllTasks />,
+      },
+      {
+        path: "update-task/:id",
+        element: <EditTasks />,
       },
     ],
   },

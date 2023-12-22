@@ -21,7 +21,7 @@ const TaskStack = ({ status, tasks, setTasks, todos, doing, completed }) => {
         if (task._id === id) {
           const updatedStatus = { status };
           axiosPublic
-            .patch(`/api/v1/update-task/${id}`, updatedStatus)
+            .patch(`/api/v1/update-status/${id}`, updatedStatus)
             .then((res) => {
               if (res.data.modifiedCount > 0) {
                 Swal.fire(

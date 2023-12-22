@@ -1,4 +1,5 @@
 import Banner from "../../Components/Banner/Banner";
+import Contact from "../../Components/Contact/Contact";
 import Pricing from "../../Components/Pricing/Pricing";
 import Users from "../../Components/Users/Users";
 
@@ -8,6 +9,7 @@ const Home = () => {
       <Banner />
       <Users />
       <Pricing />
+      <Contact />
     </div>
   );
 };
