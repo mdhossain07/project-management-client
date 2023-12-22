@@ -40,7 +40,7 @@ const Login = () => {
 
         axiosPublic.post("/api/v1/create-user", userInfo).then((res) => {
           if (res.data.insertedId) {
-            Swal.fire("Success", "User Logged in", "success");
+            Swal.fire("Success", "User looged in", "success");
             navigate("/");
           }
         });

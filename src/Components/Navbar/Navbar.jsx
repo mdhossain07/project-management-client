@@ -81,7 +81,7 @@ const Navbar = () => {
 
       <div className="ml-2 lg:ml-56">
         {user ? (
-          <div className="dropdown dropdown-end">
+          <div className="dropdown dropdown-end mt-3 lg:mt-0">
             <div
               tabIndex={0}
               role="button"
@@ -93,7 +93,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 -ml-24"
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 -mr-36"
             >
               <li>
                 <a href="/dashboard">Dashboard</a>

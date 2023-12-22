@@ -36,7 +36,7 @@ const AllTasks = () => {
         {loading ? (
           <span className="loading loading-infinity loading-lg"></span>
         ) : (
-          <div className="grid lg:grid-cols-3 gap-5 lg:gap-16 ml-5 lg:px-24 overflow-x-auto">
+          <div className="grid lg:grid-cols-3 justify-items-center gap-5 lg:gap-16 ml-5 lg:px-24 overflow-x-auto">
             {statuses?.map((status, index) => (
               <TaskStack
                 key={index}

@@ -99,7 +99,7 @@ const Register = () => {
   return (
     <div className="hero min-h-screen ">
       <div className="hero-content flex-col mt-10">
-        <div className="card flex-shrink-0 md:w-[550px] h-[620px] shadow-2xl">
+        <div className="card flex-shrink-0 w-full md:w-[550px] h-[620px] shadow-2xl">
           <div className="text-center">
             <h1 className="text-2xl lg:text-3xl font-bold mt-10">
               Register your account
