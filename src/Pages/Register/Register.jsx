@@ -3,9 +3,11 @@ import Swal from "sweetalert2";
 import googleIcon from "../../assets/icons/Google__G__Logo 1 (1).svg";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import githubIcon from "../../assets/icons/github.png";
 
 const Register = () => {
-  const { createUser, updateUserProfile, user, googleLogin } = useAuth();
+  const { createUser, updateUserProfile, user, googleLogin, githubLogin } =
+    useAuth();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
 
@@ -48,7 +50,7 @@ const Register = () => {
           };
           axiosPublic.post("/api/v1/create-user", userInfo).then((res) => {
             if (res.data.insertedId) {
-              Swal.fire("Success", "User Created Done", "success");
+              Swal.fire("Success", "User Logged in", "success");
               navigate("/");
             }
           });
@@ -83,9 +85,20 @@ const Register = () => {
       });
   };
 
+  const handleGithubLogin = () => {
+    githubLogin()
+      .then((res) => {
+        console.log(res.user);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="hero min-h-screen ">
-      <div className="hero-content flex-col">
+      <div className="hero-content flex-col mt-10">
         <div className="card flex-shrink-0 md:w-[550px] h-[620px] shadow-2xl">
           <div className="text-center">
             <h1 className="text-2xl lg:text-3xl font-bold mt-10">
@@ -161,11 +174,18 @@ const Register = () => {
             <h2 className="text-center mt-10">
               ----------------Or----------------
             </h2>
-            <div className="flex justify-center py-10">
-              <div className="flex justify-center gap-5 border-2  rounded-full w-[400px] py-2">
+            <div className="flex flex-col gap-3 justify-center py-5">
+              <div className="flex justify-center gap-5 border-2 rounded-full w-[400px] mx-auto py-2">
                 <img src={googleIcon} alt="googleIcon" />
                 <button className="font-medium" onClick={handleGoogleLogin}>
                   Continue With Google
+                </button>
+              </div>
+
+              <div className="flex justify-center gap-5 border-2 rounded-full w-[400px] mx-auto py-2">
+                <img className="w-[30px]" src={githubIcon} alt="githubIcon" />
+                <button className="font-medium" onClick={handleGithubLogin}>
+                  Continue With Github
                 </button>
               </div>
             </div>

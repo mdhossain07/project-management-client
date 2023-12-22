@@ -2,12 +2,11 @@ import { Link, Outlet } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { FaTasks } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
-
 const DashboardLayout = () => {
   return (
     <div>
       <div className="flex flex-row ">
-        <div className="w-48 bg-gray-300 flex flex-col min-h-screen">
+        <div className="w-48 pt-5 bg-gray-300 flex flex-col min-h-screen">
           <div className="flex items-center gap-3 p-3">
             <FaUser />
             <Link to="/dashboard">Profile</Link>

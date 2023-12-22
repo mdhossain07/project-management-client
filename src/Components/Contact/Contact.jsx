@@ -2,11 +2,11 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="bg-gradient-to-r from-purple-500 to-pink-500 container mx-auto px-8 md:px-16 lg:px-24 py-16 "
+      className="bg-gradient-to-r from-purple-500 to-pink-500 container mx-auto px-8 md:px-16 lg:px-24 py-16"
     >
-      <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+      <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 ">
         <div className="w-full lg:w-1/2">
-          <h2 className="text-[#331C52] font-semibold text-4xl">
+          <h2 className="text-white font-semibold text-4xl">
             Got Questions?
             <br />
             Lets Figure this out together
@@ -15,7 +15,7 @@ const Contact = () => {
         </div>
 
         <div className="w-full lg:w-[420px]">
-          <h2 className="text-[#331C52] font-semibold mb-5 text-4xl">
+          <h2 className="text-white font-semibold mb-5 text-4xl">
             Contact with Us
           </h2>
           <form className="mt-10">

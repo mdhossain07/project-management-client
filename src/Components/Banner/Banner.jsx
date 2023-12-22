@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import bannerImg from "../../assets/images/Banner Image.png";
+import bannerImg from "../../assets/images/undraw_completed_tasks_vs6q.svg";
 
 const Banner = () => {
   return (
@@ -7,9 +7,9 @@ const Banner = () => {
       id="home"
       className="container mx-auto px-8 md:px-16 lg:px-24 min-h-[calc(100vh-64px)] lg:min-h-[calc(100vh-82px)] bg-gradient-to-r from-purple-500 to-pink-500"
     >
-      <div className="min-h-[calc(100vh-82px)] flex flex-col lg:flex-row lg:gap-16 items-center">
+      <div className="min-h-[calc(100vh-82px)] flex flex-col lg:flex-row lg:gap-24 items-center">
         <div className="text-white my-10 space-y-5">
-          <h2 className="text-4xl lg:text-5xl font-bold w-[500px] lg:w-[600px] text-center lg:text-start">
+          <h2 className="text-4xl lg:text-5xl font-bold  lg:w-[600px] text-center lg:text-start">
             Team Flow brings all your tasks, teammates, and tools together
           </h2>
           <p className="text-center lg:text-start text-lg">
@@ -25,7 +25,7 @@ const Banner = () => {
         </div>
 
         <div>
-          <img className="w-[500px] lg:w-[600px]" src={bannerImg} alt="" />
+          <img className="w-[400px] lg:w-[500px]" src={bannerImg} alt="" />
         </div>
       </div>
     </div>

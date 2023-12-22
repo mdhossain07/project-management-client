@@ -79,7 +79,7 @@ const Navbar = () => {
         </Link>
       </li>
 
-      <div className="lg:ml-56">
+      <div className="ml-2 lg:ml-56">
         {user ? (
           <div className="dropdown dropdown-end">
             <div
@@ -93,7 +93,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 ml-24"
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 -ml-24"
             >
               <li>
                 <a href="/dashboard">Dashboard</a>
@@ -105,7 +105,12 @@ const Navbar = () => {
           </div>
         ) : (
           <li>
-            <a href="/login">Login</a>
+            <a
+              className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-3 rounded-full"
+              href="/login"
+            >
+              Login
+            </a>
           </li>
         )}
       </div>

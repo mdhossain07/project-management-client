@@ -3,7 +3,7 @@ import { useDrag } from "react-dnd";
 import { FaTrash } from "react-icons/fa";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { FaStopwatch } from "react-icons/fa";
-import { FaPenAlt } from "react-icons/fa";
+import { FaPenSquare } from "react-icons/fa";
 import Swal from "sweetalert2";
 import moment from "moment";
 import { Link } from "react-router-dom";
@@ -28,18 +28,22 @@ const Card = ({ task, tasks, setTasks }) => {
       if (res.data.deletedCount > 0) {
         Swal.fire("Done", "Task is removed from the list", "success");
       }
-      const remaining = tasks?.filter((task) => task._id === id);
+      const remaining = tasks?.filter((task) => task._id !== id);
       setTasks(remaining);
     });
   };
 
   return (
-    <div className="mt-2 cursor-pointer py-3 h-[330px] w-[300px] shadow-md rounded-md">
+    <div className="mt-2 py-3 h-[330px] w-[300px] shadow-md rounded-md">
       <div
         ref={drag}
         className={` ${isDragging ? "opacity-25" : "opacity-100"}`}
       >
-        <img src={image} className="h-[200px] w-full p-3" alt="" />
+        <img
+          src={image}
+          className="h-[200px] w-full p-3 cursor-pointer"
+          alt=""
+        />
         <div className="flex gap-8 px-3 items-center">
           <h2 className="font-medium ml-2 w-[210px]">{title}</h2>
           <button onClick={() => handleRemove(_id)}>
@@ -47,7 +51,7 @@ const Card = ({ task, tasks, setTasks }) => {
           </button>
 
           <Link to={`/dashboard/update-task/${_id}`}>
-            <FaPenAlt className="text-purple-700 text-xl" />
+            <FaPenSquare className="text-purple-700 text-2xl" />
           </Link>
         </div>
 

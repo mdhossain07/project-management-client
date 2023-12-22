@@ -6,7 +6,7 @@ const Users = () => {
   return (
     <div
       id="action"
-      className="py-16 bg-cyan-50 container mx-auto px-8 md:px-16 lg:px-24"
+      className="py-24 bg-cyan-50 container mx-auto px-8 md:px-16 lg:px-24"
     >
       <h2 className="text-4xl font-semibold text-center mt-1">
         Team Flow for Action
