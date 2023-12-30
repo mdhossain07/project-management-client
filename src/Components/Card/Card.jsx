@@ -12,6 +12,7 @@ const Card = ({ task, tasks, setTasks }) => {
   const { title, priority, _id, image, deadline } = task;
 
   const myDate = moment(deadline).format("MMMM D, YYYY");
+  // console.log(myDate);
 
   const axiosPublic = useAxiosPublic();
 
@@ -34,7 +35,7 @@ const Card = ({ task, tasks, setTasks }) => {
   };
 
   return (
-    <div className="mt-2 py-3 h-[330px] w-[300px] shadow-md rounded-md">
+    <div className="mt-2 py-3 h-[330px] w-[300px] shadow-md rounded-md cursor-grab">
       <div
         ref={drag}
         className={` ${isDragging ? "opacity-25" : "opacity-100"}`}
